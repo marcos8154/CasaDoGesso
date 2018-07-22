@@ -20,6 +20,7 @@ namespace CasaDoGesso.Orcamentos
             InitializeComponent();
 
             dataGrid.AplicarPadroesDataGrid();
+
         }
 
         private void btSelecionarCliente_Click(object sender, EventArgs e)
@@ -61,6 +62,11 @@ namespace CasaDoGesso.Orcamentos
 
         private void btInserir_Click(object sender, EventArgs e)
         {
+            InserirItem();
+        }
+
+        private void InserirItem()
+        {
             ItemOrcamento item = new ItemOrcamento();
             item.OrcamentoId = IdAtual;
             item.Quant = txQuant.Value;
@@ -84,13 +90,13 @@ namespace CasaDoGesso.Orcamentos
             txDescricao.Text = string.Empty;
             txValorUnit.Value = 0;
             txTotal.Value = 0;
-
-            txQuant.Focus();
-
+            
             txTotalOrcamento.Value = Itens.Sum(i => i.Total);
 
             OrcamentoBLL bll = new OrcamentoBLL();
             bll.AdicionaItem(item);
+
+            txQuant.Focus();
         }
 
         public void FillForm(int id)
@@ -106,16 +112,13 @@ namespace CasaDoGesso.Orcamentos
 
             Itens = orcamento.ItemOrcamento.ToList();
             dataGrid.DataSource = Itens;
+
+            txTotalOrcamento.Value = Itens.Sum(i => i.Total);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Salvar();
         }
 
         private Orcamento GetOrcamento()
@@ -133,18 +136,6 @@ namespace CasaDoGesso.Orcamentos
             or.ItemOrcamento = Itens;
 
             return or;
-        }
-
-        private void Salvar()
-        {
-            try
-            {
-                Orcamento o = GetOrcamento();
-            }
-            catch(Exception ex)
-            {
-                Messages.Error("Não foi possível salvar o orçamento", ex);
-            }
         }
 
         private void txQuant_Leave(object sender, EventArgs e)
@@ -169,7 +160,7 @@ namespace CasaDoGesso.Orcamentos
         {
             txValorUnit.Focus();
         }
-        
+
         private void dataGrid_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
         }
@@ -190,12 +181,12 @@ namespace CasaDoGesso.Orcamentos
                 o.Data = txData.Value;
                 o.Observacoes = txObs.Text;
                 o.Encerrado = false;
-                
+
                 bll.Save(o);
                 IdAtual = o.Id;
                 tabControl.SelectedTab = tabControl.TabPages[1];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Messages.Error("Não foi possível salvar o orçamento", ex);
             }
@@ -203,9 +194,9 @@ namespace CasaDoGesso.Orcamentos
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(tabControl.SelectedTab == tabControl.TabPages[1])
+            if (tabControl.SelectedTab == tabControl.TabPages[1])
             {
-                if(IdAtual == 0)
+                if (IdAtual == 0)
                 {
                     MessageBox.Show("Salve o orçamento antes de incluir os itens!",
                         "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -230,6 +221,39 @@ namespace CasaDoGesso.Orcamentos
             dataGrid.DataSource = null;
             dataGrid.DataSource = Itens;
             txTotalOrcamento.Value = Itens.Sum(i => i.Total);
+        }
+
+        private void txQuant_Enter(object sender, EventArgs e)
+        {
+            txQuant.Select(0, txQuant.Value.ToString("N3").Length);
+        }
+
+        private void txValorUnit_Enter(object sender, EventArgs e)
+        {
+            txValorUnit.Select(0, txValorUnit.Value.ToString("N2").Length);
+        }
+
+        private void txValorUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btInserir.Focus();
+        }
+
+        private void txQuant_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                txDescricao.Focus();
+        }
+
+        private void txDescricao_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                txValorUnit.Focus();
+        }
+
+        private void txDescricao_Enter(object sender, EventArgs e)
+        {
+            txDescricao.SelectAll();
         }
     }
 }

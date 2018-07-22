@@ -72,7 +72,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Quant" Type="decimal" Precision="10" Scale="3" Nullable="false" />
-          <Property Name="UM" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Unit" Type="decimal" Precision="15" Scale="2" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
@@ -129,6 +128,22 @@ warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a prim
           <Property Name="Data" Type="date" Nullable="false" />
           <Property Name="Observacoes" Type="varchar" MaxLength="250" />
           <Property Name="Encerrado" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Servico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="Data" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Cliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Observacoes" Type="varchar" MaxLength="250" />
           <Property Name="Valor" Type="decimal" Precision="38" Scale="2" />
         </EntityType>
         <Association Name="FK__ItemOrcam__Orcam__1ED998B2">
@@ -212,6 +227,16 @@ warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a prim
     [Vw_Orcamento].[Valor] AS [Valor]
     FROM [dbo].[Vw_Orcamento] AS [Vw_Orcamento]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Vw_Servico" EntityType="Self.Vw_Servico" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_Servico].[Id] AS [Id], 
+    [Vw_Servico].[Cliente] AS [Cliente], 
+    [Vw_Servico].[ClienteId] AS [ClienteId], 
+    [Vw_Servico].[Data] AS [Data], 
+    [Vw_Servico].[Observacoes] AS [Observacoes], 
+    [Vw_Servico].[Valor] AS [Valor]
+    FROM [dbo].[Vw_Servico] AS [Vw_Servico]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__ItemOrcam__Orcam__1ED998B2" Association="Self.FK__ItemOrcam__Orcam__1ED998B2">
             <End Role="Orcamento" EntitySet="Orcamento" />
             <End Role="ItemOrcamento" EntitySet="ItemOrcamento" />
@@ -269,6 +294,7 @@ warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a prim
             <End Role="ItemServico" EntitySet="ItemServico" />
           </AssociationSet>
           <EntitySet Name="Vw_Orcamento" EntityType="CasaDoGessoModel.Vw_Orcamento" />
+          <EntitySet Name="Vw_Servico" EntityType="CasaDoGessoModel.Vw_Servico" />
         </EntityContainer>
         <EntityType Name="ClausulaContrato">
           <Key>
@@ -341,7 +367,6 @@ warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a prim
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Quant" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
-          <Property Name="UM" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Unit" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
@@ -464,6 +489,20 @@ warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a prim
           <Property Name="Encerrado" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Valor" Type="Decimal" Precision="38" Scale="2" />
         </EntityType>
+        <EntityType Name="Vw_Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="Data" />
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observacoes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -543,7 +582,6 @@ warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a prim
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Unit" ColumnName="Unit" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-                <ScalarProperty Name="UM" ColumnName="UM" />
                 <ScalarProperty Name="Quant" ColumnName="Quant" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -595,6 +633,18 @@ warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a prim
               <MappingFragment StoreEntitySet="Vw_Orcamento">
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
                 <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vw_Servico">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Vw_Servico">
+              <MappingFragment StoreEntitySet="Vw_Servico">
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
                 <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="Cliente" ColumnName="Cliente" />

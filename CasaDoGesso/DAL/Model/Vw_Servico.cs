@@ -12,15 +12,13 @@ namespace DAL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemServico
+    public partial class Vw_Servico
     {
         public int Id { get; set; }
-        public decimal Quant { get; set; }
-        public string Descricao { get; set; }
-        public decimal Unit { get; set; }
-        public decimal Total { get; set; }
-        public int ServicoId { get; set; }
-    
-        public virtual Servico Servico { get; set; }
+        public string Cliente { get; set; }
+        public System.DateTime Data { get; set; }
+        public string Observacoes { get; set; }
+        public Nullable<decimal> Valor { get; set; }
+        public int ClienteId { get; set; }
     }
 }

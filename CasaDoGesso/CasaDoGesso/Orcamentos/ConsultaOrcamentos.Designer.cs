@@ -42,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btBuscar = new System.Windows.Forms.Button();
+            this.btConverterEmServico = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,11 +94,13 @@
             // 
             this.btExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btExcluir.Image = global::CasaDoGesso.Properties.Resources.delete;
+            this.btExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btExcluir.Location = new System.Drawing.Point(12, 356);
             this.btExcluir.Name = "btExcluir";
-            this.btExcluir.Size = new System.Drawing.Size(115, 23);
+            this.btExcluir.Size = new System.Drawing.Size(127, 23);
             this.btExcluir.TabIndex = 1;
-            this.btExcluir.Text = "Excluir orçamento";
+            this.btExcluir.Text = "        Excluir orçamento";
             this.btExcluir.UseVisualStyleBackColor = true;
             this.btExcluir.Click += new System.EventHandler(this.btExcluir_Click);
             // 
@@ -119,11 +122,13 @@
             this.btNovo.BackColor = System.Drawing.Color.Indigo;
             this.btNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btNovo.ForeColor = System.Drawing.Color.Snow;
+            this.btNovo.Image = global::CasaDoGesso.Properties.Resources.add;
+            this.btNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btNovo.Location = new System.Drawing.Point(656, 12);
             this.btNovo.Name = "btNovo";
             this.btNovo.Size = new System.Drawing.Size(111, 23);
             this.btNovo.TabIndex = 3;
-            this.btNovo.Text = "Novo orçamento";
+            this.btNovo.Text = "     Novo orçamento";
             this.btNovo.UseVisualStyleBackColor = false;
             this.btNovo.Click += new System.EventHandler(this.btNovo_Click);
             // 
@@ -180,19 +185,33 @@
             this.btBuscar.BackColor = System.Drawing.Color.Indigo;
             this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btBuscar.ForeColor = System.Drawing.Color.White;
+            this.btBuscar.Image = global::CasaDoGesso.Properties.Resources.if_system_search_118797;
+            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btBuscar.Location = new System.Drawing.Point(280, 11);
             this.btBuscar.Name = "btBuscar";
             this.btBuscar.Size = new System.Drawing.Size(75, 23);
             this.btBuscar.TabIndex = 9;
-            this.btBuscar.Text = "Buscar";
+            this.btBuscar.Text = "    Buscar";
             this.btBuscar.UseVisualStyleBackColor = false;
             this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
-            // ConsultaOrcamentos
+            // btConverterEmServico
+            // 
+            this.btConverterEmServico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btConverterEmServico.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btConverterEmServico.Location = new System.Drawing.Point(465, 12);
+            this.btConverterEmServico.Name = "btConverterEmServico";
+            this.btConverterEmServico.Size = new System.Drawing.Size(72, 23);
+            this.btConverterEmServico.TabIndex = 10;
+            this.btConverterEmServico.Text = "Serviço ...";
+            this.btConverterEmServico.UseVisualStyleBackColor = true;
+            // 
+            // ConsultaServicos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 391);
+            this.Controls.Add(this.btConverterEmServico);
             this.Controls.Add(this.btBuscar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -204,7 +223,7 @@
             this.Controls.Add(this.btExcluir);
             this.Controls.Add(this.dataGrid);
             this.MaximizeBox = false;
-            this.Name = "ConsultaOrcamentos";
+            this.Name = "ConsultaServicos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta rápida de orçamentos";
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
@@ -228,5 +247,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Button btConverterEmServico;
     }
 }

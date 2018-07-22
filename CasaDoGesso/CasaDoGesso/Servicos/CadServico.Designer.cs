@@ -1,6 +1,6 @@
-﻿namespace CasaDoGesso.Orcamentos
+﻿namespace CasaDoGesso.Servicos
 {
-    partial class CadOrcamento
+    partial class CadServico
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
@@ -95,11 +95,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Location = new System.Drawing.Point(8, 8);
+            this.tabControl.Location = new System.Drawing.Point(7, 6);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(889, 465);
-            this.tabControl.TabIndex = 0;
+            this.tabControl.TabIndex = 1;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage1
@@ -388,6 +388,7 @@
             // 
             // btRemoverItem
             // 
+            this.btRemoverItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btRemoverItem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btRemoverItem.Location = new System.Drawing.Point(6, 399);
             this.btRemoverItem.Name = "btRemoverItem";
@@ -504,7 +505,6 @@
             this.txDescricao.TabIndex = 9;
             this.txDescricao.Enter += new System.EventHandler(this.txDescricao_Enter);
             this.txDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txDescricao_KeyDown);
-            this.txDescricao.Leave += new System.EventHandler(this.txDescricao_Leave);
             // 
             // txQuant
             // 
@@ -520,7 +520,6 @@
             this.txQuant.TabIndex = 5;
             this.txQuant.Enter += new System.EventHandler(this.txQuant_Enter);
             this.txQuant.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txQuant_KeyDown);
-            this.txQuant.Leave += new System.EventHandler(this.txQuant_Leave);
             // 
             // label10
             // 
@@ -550,13 +549,12 @@
             this.dataGrid.ReadOnly = true;
             this.dataGrid.Size = new System.Drawing.Size(851, 334);
             this.dataGrid.TabIndex = 4;
-            this.dataGrid.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dataGrid_PreviewKeyDown);
             // 
             // Column1
             // 
             this.Column1.DataPropertyName = "Quant";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column1.HeaderText = "Quant";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -572,8 +570,8 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "Unit";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column4.HeaderText = "Unit (R$)";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -581,21 +579,22 @@
             // Column5
             // 
             this.Column5.DataPropertyName = "Total";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column5.HeaderText = "Total (R$)";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // CadOrcamento
+            // CadServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 485);
+            this.ClientSize = new System.Drawing.Size(902, 477);
             this.Controls.Add(this.tabControl);
-            this.Name = "CadOrcamento";
+            this.MaximizeBox = false;
+            this.Name = "CadServico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de orçamentos";
+            this.Text = "Cadastro de serviço";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -617,6 +616,12 @@
 
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txObs;
+        private System.Windows.Forms.DateTimePicker txData;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btSelecionarCliente;
         private System.Windows.Forms.TextBox txMunicipio;
@@ -635,29 +640,23 @@
         private System.Windows.Forms.NumericUpDown txCodCliente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGrid;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown txQuant;
         private System.Windows.Forms.GroupBox gpbxItens;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txDescricao;
-        private System.Windows.Forms.NumericUpDown txValorUnit;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btRemoverItem;
+        private System.Windows.Forms.NumericUpDown txTotalOrcamento;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btInserir;
         private System.Windows.Forms.NumericUpDown txTotal;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btInserir;
+        private System.Windows.Forms.NumericUpDown txValorUnit;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txDescricao;
+        private System.Windows.Forms.NumericUpDown txQuant;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.NumericUpDown txTotalOrcamento;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txObs;
-        private System.Windows.Forms.DateTimePicker txData;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btRemoverItem;
     }
 }

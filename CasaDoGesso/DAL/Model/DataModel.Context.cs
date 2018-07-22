@@ -36,5 +36,6 @@ namespace DAL.Model
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Visita> Visita { get; set; }
         public virtual DbSet<Vw_Orcamento> Vw_Orcamento { get; set; }
+        public virtual DbSet<Vw_Servico> Vw_Servico { get; set; }
     }
 }

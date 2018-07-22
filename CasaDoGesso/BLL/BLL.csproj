@@ -54,6 +54,7 @@
     <Compile Include="FormaPagamentoBLL.cs" />
     <Compile Include="OrcamentoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicoBLL.cs" />
     <Compile Include="VisitaBLL.cs" />
   </ItemGroup>
   <ItemGroup>

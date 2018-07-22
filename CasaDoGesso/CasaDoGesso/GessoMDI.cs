@@ -3,6 +3,7 @@ using CasaDoGesso.AgendamentoVisitas.Painel;
 using CasaDoGesso.Clientes;
 using CasaDoGesso.FormasPag;
 using CasaDoGesso.Orcamentos;
+using CasaDoGesso.Servicos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -121,9 +122,16 @@ namespace CasaDoGesso
 
         private void orçamentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConsultaOrcamentos co = new ConsultaOrcamentos();
+            ConsultaOrcamentos co = new Orcamentos.ConsultaOrcamentos();
             co.MdiParent = this;
             co.Show();
+        }
+
+        private void serviçosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaServicos cs = new ConsultaServicos();
+            cs.MdiParent = this;
+            cs.Show();
         }
     }
 }
