@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b9a94d4fccc47ba90dc6a0768305a77" Name="Diagram1">
+        <EntityTypeShape EntityType="CasaDoGessoModel.ClausulaContrato" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.Cliente" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.Empresa" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.FormaPagamento" Width="1.5" PointX="5.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.ItemOrcamento" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.ItemServico" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.Orcamento" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.Servico" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.Usuario" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.Visita" Width="1.5" PointX="3" PointY="7.625" />
+        <AssociationConnector Association="CasaDoGessoModel.FK__Orcamento__Clien__1BFD2C07" />
+        <AssociationConnector Association="CasaDoGessoModel.FK__Servico__Cliente__239E4DCF" />
+        <AssociationConnector Association="CasaDoGessoModel.FK__Visita__ClienteI__182C9B23" />
+        <AssociationConnector Association="CasaDoGessoModel.FK__ItemOrcam__Orcam__1ED998B2" />
+        <AssociationConnector Association="CasaDoGessoModel.FK__ItemServi__Servi__267ABA7A" />
+        <EntityTypeShape EntityType="CasaDoGessoModel.Vw_Orcamento" Width="1.5" PointX="10.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

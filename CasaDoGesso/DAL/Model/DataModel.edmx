@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CasaDoGessoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClausulaContrato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Texto" Type="varchar(max)" Nullable="false" />
+          <Property Name="Ordem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoPessoa" Type="int" Nullable="false" />
+          <Property Name="CpfCnpj" Type="varchar" MaxLength="20" />
+          <Property Name="Telefone" Type="varchar" MaxLength="20" />
+          <Property Name="Celular" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Logradouro" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bairro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="CEP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Inativo" Type="int" Nullable="false" />
+          <Property Name="Municipio" Type="varchar" MaxLength="60" />
+          <Property Name="UF" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeFantasia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazaoSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cnpj" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Telefone1" Type="varchar" MaxLength="20" />
+          <Property Name="Telefone2" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="Website" Type="varchar" MaxLength="20" />
+          <Property Name="Logo" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="FormaPagamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemOrcamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quant" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Unit" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="OrcamentoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemServico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quant" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="UM" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Unit" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ServicoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orcamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Observacoes" Type="varchar" MaxLength="250" />
+          <Property Name="Encerrado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Observacoes" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Visita">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="DataVisita" Type="datetime" Nullable="false" />
+          <Property Name="Motivo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Realizado" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CasaDoGesso.dbo.Vw_Orcamento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_Orcamento">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="Data" />
+            <PropertyRef Name="Encerrado" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Cliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Observacoes" Type="varchar" MaxLength="250" />
+          <Property Name="Encerrado" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <Association Name="FK__ItemOrcam__Orcam__1ED998B2">
+          <End Role="Orcamento" Type="Self.Orcamento" Multiplicity="1" />
+          <End Role="ItemOrcamento" Type="Self.ItemOrcamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orcamento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemOrcamento">
+              <PropertyRef Name="OrcamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemServi__Servi__267ABA7A">
+          <End Role="Servico" Type="Self.Servico" Multiplicity="1" />
+          <End Role="ItemServico" Type="Self.ItemServico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemServico">
+              <PropertyRef Name="ServicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orcamento__Clien__1BFD2C07">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Orcamento" Type="Self.Orcamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orcamento">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servico__Cliente__239E4DCF">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visita__ClienteI__182C9B23">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CasaDoGessoModelStoreContainer">
+          <EntitySet Name="ClausulaContrato" EntityType="Self.ClausulaContrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormaPagamento" EntityType="Self.FormaPagamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemOrcamento" EntityType="Self.ItemOrcamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemServico" EntityType="Self.ItemServico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orcamento" EntityType="Self.Orcamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visita" EntityType="Self.Visita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vw_Orcamento" EntityType="Self.Vw_Orcamento" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_Orcamento].[Id] AS [Id], 
+    [Vw_Orcamento].[Cliente] AS [Cliente], 
+    [Vw_Orcamento].[Data] AS [Data], 
+    [Vw_Orcamento].[Observacoes] AS [Observacoes], 
+    [Vw_Orcamento].[Encerrado] AS [Encerrado], 
+    [Vw_Orcamento].[Valor] AS [Valor]
+    FROM [dbo].[Vw_Orcamento] AS [Vw_Orcamento]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ItemOrcam__Orcam__1ED998B2" Association="Self.FK__ItemOrcam__Orcam__1ED998B2">
+            <End Role="Orcamento" EntitySet="Orcamento" />
+            <End Role="ItemOrcamento" EntitySet="ItemOrcamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemServi__Servi__267ABA7A" Association="Self.FK__ItemServi__Servi__267ABA7A">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="ItemServico" EntitySet="ItemServico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orcamento__Clien__1BFD2C07" Association="Self.FK__Orcamento__Clien__1BFD2C07">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orcamento" EntitySet="Orcamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servico__Cliente__239E4DCF" Association="Self.FK__Servico__Cliente__239E4DCF">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Servico" EntitySet="Servico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visita__ClienteI__182C9B23" Association="Self.FK__Visita__ClienteI__182C9B23">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CasaDoGessoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CasaDoGessoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClausulaContrato" EntityType="CasaDoGessoModel.ClausulaContrato" />
+          <EntitySet Name="Cliente" EntityType="CasaDoGessoModel.Cliente" />
+          <EntitySet Name="Empresa" EntityType="CasaDoGessoModel.Empresa" />
+          <EntitySet Name="FormaPagamento" EntityType="CasaDoGessoModel.FormaPagamento" />
+          <EntitySet Name="ItemOrcamento" EntityType="CasaDoGessoModel.ItemOrcamento" />
+          <EntitySet Name="ItemServico" EntityType="CasaDoGessoModel.ItemServico" />
+          <EntitySet Name="Orcamento" EntityType="CasaDoGessoModel.Orcamento" />
+          <EntitySet Name="Servico" EntityType="CasaDoGessoModel.Servico" />
+          <EntitySet Name="Usuario" EntityType="CasaDoGessoModel.Usuario" />
+          <EntitySet Name="Visita" EntityType="CasaDoGessoModel.Visita" />
+          <AssociationSet Name="FK__Orcamento__Clien__1BFD2C07" Association="CasaDoGessoModel.FK__Orcamento__Clien__1BFD2C07">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orcamento" EntitySet="Orcamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servico__Cliente__239E4DCF" Association="CasaDoGessoModel.FK__Servico__Cliente__239E4DCF">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Servico" EntitySet="Servico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visita__ClienteI__182C9B23" Association="CasaDoGessoModel.FK__Visita__ClienteI__182C9B23">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemOrcam__Orcam__1ED998B2" Association="CasaDoGessoModel.FK__ItemOrcam__Orcam__1ED998B2">
+            <End Role="Orcamento" EntitySet="Orcamento" />
+            <End Role="ItemOrcamento" EntitySet="ItemOrcamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemServi__Servi__267ABA7A" Association="CasaDoGessoModel.FK__ItemServi__Servi__267ABA7A">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="ItemServico" EntitySet="ItemServico" />
+          </AssociationSet>
+          <EntitySet Name="Vw_Orcamento" EntityType="CasaDoGessoModel.Vw_Orcamento" />
+        </EntityContainer>
+        <EntityType Name="ClausulaContrato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Texto" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ordem" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoPessoa" Type="Int32" Nullable="false" />
+          <Property Name="CpfCnpj" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Logradouro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Bairro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="CEP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Inativo" Type="Int32" Nullable="false" />
+          <Property Name="Municipio" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orcamento" Relationship="CasaDoGessoModel.FK__Orcamento__Clien__1BFD2C07" FromRole="Cliente" ToRole="Orcamento" />
+          <NavigationProperty Name="Servico" Relationship="CasaDoGessoModel.FK__Servico__Cliente__239E4DCF" FromRole="Cliente" ToRole="Servico" />
+          <NavigationProperty Name="Visita" Relationship="CasaDoGessoModel.FK__Visita__ClienteI__182C9B23" FromRole="Cliente" ToRole="Visita" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeFantasia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RazaoSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cnpj" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FormaPagamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemOrcamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quant" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Unit" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="OrcamentoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orcamento" Relationship="CasaDoGessoModel.FK__ItemOrcam__Orcam__1ED998B2" FromRole="ItemOrcamento" ToRole="Orcamento" />
+        </EntityType>
+        <EntityType Name="ItemServico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quant" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="UM" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Unit" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="ServicoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Servico" Relationship="CasaDoGessoModel.FK__ItemServi__Servi__267ABA7A" FromRole="ItemServico" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="Orcamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observacoes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Encerrado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="CasaDoGessoModel.FK__Orcamento__Clien__1BFD2C07" FromRole="Orcamento" ToRole="Cliente" />
+          <NavigationProperty Name="ItemOrcamento" Relationship="CasaDoGessoModel.FK__ItemOrcam__Orcam__1ED998B2" FromRole="Orcamento" ToRole="ItemOrcamento" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observacoes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="CasaDoGessoModel.FK__Servico__Cliente__239E4DCF" FromRole="Servico" ToRole="Cliente" />
+          <NavigationProperty Name="ItemServico" Relationship="CasaDoGessoModel.FK__ItemServi__Servi__267ABA7A" FromRole="Servico" ToRole="ItemServico" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Visita">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="DataVisita" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Motivo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Realizado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="CasaDoGessoModel.FK__Visita__ClienteI__182C9B23" FromRole="Visita" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK__Orcamento__Clien__1BFD2C07">
+          <End Type="CasaDoGessoModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="CasaDoGessoModel.Orcamento" Role="Orcamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orcamento">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servico__Cliente__239E4DCF">
+          <End Type="CasaDoGessoModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="CasaDoGessoModel.Servico" Role="Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visita__ClienteI__182C9B23">
+          <End Type="CasaDoGessoModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="CasaDoGessoModel.Visita" Role="Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemOrcam__Orcam__1ED998B2">
+          <End Type="CasaDoGessoModel.Orcamento" Role="Orcamento" Multiplicity="1" />
+          <End Type="CasaDoGessoModel.ItemOrcamento" Role="ItemOrcamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orcamento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemOrcamento">
+              <PropertyRef Name="OrcamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemServi__Servi__267ABA7A">
+          <End Type="CasaDoGessoModel.Servico" Role="Servico" Multiplicity="1" />
+          <End Type="CasaDoGessoModel.ItemServico" Role="ItemServico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemServico">
+              <PropertyRef Name="ServicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Vw_Orcamento">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="Data" />
+            <PropertyRef Name="Encerrado" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observacoes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Encerrado" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Precision="38" Scale="2" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CasaDoGessoModelStoreContainer" CdmEntityContainer="CasaDoGessoEntities">
+          <EntitySetMapping Name="ClausulaContrato">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.ClausulaContrato">
+              <MappingFragment StoreEntitySet="ClausulaContrato">
+                <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Inativo" ColumnName="Inativo" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Logradouro" ColumnName="Logradouro" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="CpfCnpj" ColumnName="CpfCnpj" />
+                <ScalarProperty Name="TipoPessoa" ColumnName="TipoPessoa" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefone2" ColumnName="Telefone2" />
+                <ScalarProperty Name="Telefone1" ColumnName="Telefone1" />
+                <ScalarProperty Name="IE" ColumnName="IE" />
+                <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+                <ScalarProperty Name="RazaoSocial" ColumnName="RazaoSocial" />
+                <ScalarProperty Name="NomeFantasia" ColumnName="NomeFantasia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormaPagamento">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.FormaPagamento">
+              <MappingFragment StoreEntitySet="FormaPagamento">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemOrcamento">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.ItemOrcamento">
+              <MappingFragment StoreEntitySet="ItemOrcamento">
+                <ScalarProperty Name="OrcamentoId" ColumnName="OrcamentoId" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Quant" ColumnName="Quant" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemServico">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.ItemServico">
+              <MappingFragment StoreEntitySet="ItemServico">
+                <ScalarProperty Name="ServicoId" ColumnName="ServicoId" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="UM" ColumnName="UM" />
+                <ScalarProperty Name="Quant" ColumnName="Quant" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orcamento">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Orcamento">
+              <MappingFragment StoreEntitySet="Orcamento">
+                <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servico">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Servico">
+              <MappingFragment StoreEntitySet="Servico">
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visita">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Visita">
+              <MappingFragment StoreEntitySet="Visita">
+                <ScalarProperty Name="Realizado" ColumnName="Realizado" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="DataVisita" ColumnName="DataVisita" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vw_Orcamento">
+            <EntityTypeMapping TypeName="CasaDoGessoModel.Vw_Orcamento">
+              <MappingFragment StoreEntitySet="Vw_Orcamento">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
