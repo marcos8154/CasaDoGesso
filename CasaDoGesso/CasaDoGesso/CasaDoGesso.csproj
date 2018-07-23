@@ -215,6 +215,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Report1.rdlc" />
     <None Include="Resources\if_system-search_118797.png" />
   </ItemGroup>
   <ItemGroup>
